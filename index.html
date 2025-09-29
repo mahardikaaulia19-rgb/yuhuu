@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kartu Ulang Tahun 4 Lembar</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #4facfe, #00f2fe);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .page {
+      width: 550px;
+      height: 370px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .page h1 {
+      margin: 10px 0;
+    }
+
+    .balloons {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+
+    /* Halaman 3 dengan teks dan foto */
+    .romantic {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .romantic .text {
+      flex: 2;
+      font-size: 0.85rem;
+      text-align: justify;
+      line-height: 1.5;
+    }
+
+    .romantic img {
+      flex: 1;
+      width: 150px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Halaman 4 */
+    .love-page {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e91e63;
+      position: relative;
+    }
+
+    /* Love animation */
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #e91e63;
+      animation: fall 5s linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) scale(1); opacity: 1; }
+      100% { transform: translateY(400px) scale(0.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    🎁 Klik untuk Membuka Kartu
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <h1 style="color:#ff4081;">Cie tambah tua 😜</h1>
+    <div class="balloons">🎈🎈🎉🎂🎉🎈🎈</div>
+    <p style="margin-top:15px; font-size:0.9rem;">(Klik lagi untuk membuka lembar berikutnya)</p>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page3">
+    <div class="romantic">
+      <div class="text">
+        <p>
+          Selamat bertambah usia abangg, Semoga dengan bertambahnya usiamu, makin bertambah juga rezekimu, sabarmu, dan cintamu hehe.  
+          Panjang umur serta diberikan kesehatan karna masih banyak wishlist yang harus diwujudkan ya abangg. Semoga Allah slalu memberi kemudahan atas segala usaha dan niat baikmu.  
+          Semoga kamu slalu dikelilingi orang-orang baik dimanapun kamu berada, dan semoga kamu slalu sayang sama aku dan slalu sabar ya sayang haha.  
+          Terimakasih sudah menjadi bagian paling bahagia buat aku sekarang dan tetap jadi partner terbaik aku ya sayang 💖
+        </p>
+      </div>
+      <img src="c:\Users\LENOVO\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\EB61C2B1B1BF5D25C86DA9FCEEF54538\WhatsApp Image 2025-09-29 at 10.05.33_95b4fe34.jpg" alt="abang">
+    </div>
+    <p style="margin-top:15px; font-size:0.9rem;">(Klik untuk membuka lembar terakhir)</p>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="page love-page" id="page4">
+    I Love U Abangg ❤️
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll(".page");
+    let currentPage = 0;
+
+    function showPage(index) {
+      pages.forEach((p, i) => {
+        p.classList.toggle("active", i === index);
+      });
+
+      // Aktifkan animasi love di halaman terakhir
+      if (index === pages.length - 1) {
+        spawnHearts();
+      }
+    }
+
+    pages.forEach(p => {
+      p.addEventListener("click", () => {
+        if (currentPage < pages.length - 1) {
+          currentPage++;
+          showPage(currentPage);
+        }
+      });
+    });
+
+    function spawnHearts() {
+      const page4 = document.getElementById("page4");
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 90 + "%";
+        heart.style.top = "-20px";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+        page4.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 600);
+    }
+  </script>
+</body>
+</html>
